@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# Salesforce
+.sfdx/
+.sf/
+*.log
+
+# OS
+.DS_Store
+
+# Secrets
+.env
