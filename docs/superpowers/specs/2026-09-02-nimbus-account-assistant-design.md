@@ -2,7 +2,7 @@
 
 **Date:** 2026-09-02
 **Author:** Amey Parmarthi
-**Purpose:** Interview artifact for Salesforce FDE loop (TMT OU — high tech / telecom / media). A working, version-controlled Agentforce agent that can be *demoed live* and *whiteboarded as a solution design*.
+**Purpose:** Interview artifact for a Salesforce FDE loop. A working, version-controlled Agentforce agent that can be *demoed live* and *whiteboarded as a solution design*. Deliberately domain-neutral so the capabilities generalize to any interviewer's industry.
 **Target org:** SDO (Simple Demo Org), alias `sdo` — preloaded with Agentforce Sales/Service, Data 360, Platform licenses.
 **Build path:** ADLC toolchain (CLI-deployed via `sf`), version-controlled in this repo.
 
@@ -10,9 +10,9 @@
 
 ## 1. Problem Statement (AI PM lens)
 
-**Problem:** TMT customer-service orgs field high volumes of repetitive account inquiries — billing questions, plan changes, outage/service status, and device troubleshooting. Human agents are expensive and slow for tier-1 work; customers wait; simple issues consume senior capacity.
+**Problem:** Subscription/service orgs field high volumes of repetitive account inquiries — billing questions, plan changes, outage/service status, and troubleshooting. Human agents are expensive and slow for tier-1 work; customers wait; simple issues consume senior capacity.
 
-**Who:** Customers of a fictional TMT provider ("Nimbus" — mobile + broadband + streaming bundle). Secondary user: the human service agent who receives escalations.
+**Who:** Customers of a fictional connectivity + streaming provider ("Nimbus" — mobile + broadband + streaming bundle). Secondary user: the human service agent who receives escalations.
 
 **Why now:** Agentforce makes it viable to contain tier-1 inquiries with grounded, guardrailed AI, escalating only what needs a human.
 
@@ -100,7 +100,7 @@ Case mix: happy-path per topic (4), guardrail-violation attempts (3–4), escala
 ## 7. Repo Layout
 
 ```
-agentforce-tmt-assistant/
+agentforce-account-assistant/
 ├── force-app/main/default/   # sf metadata: agent, apex, flows, objects, permissions
 ├── agent/                     # .agent scripts (ADLC author output)
 ├── data/                      # synthetic seed data (CSV/JSON) + import plan
