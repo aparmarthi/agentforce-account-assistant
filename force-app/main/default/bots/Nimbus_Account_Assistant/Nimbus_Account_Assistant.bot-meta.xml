@@ -196,7 +196,7 @@
         <includeInPrompt>false</includeInPrompt>
         <label>Routable Id</label>
     </contextVariables>
-    <description>Customer-facing Nimbus account assistant. Billing topic implemented (outstanding balance and unpaid invoices via Apex); plan change, outage status, and troubleshoot/escalate planned.</description>
+    <description>Customer-facing Nimbus account assistant. Billing (Apex) and plan change (Flow, confirmation-gated) implemented; outage status and troubleshoot/escalate planned.</description>
     <label>Nimbus Account Assistant</label>
     <logPrivateConversationData>false</logPrivateConversationData>
     <richContentEnabled>true</richContentEnabled>

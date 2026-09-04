@@ -42,9 +42,10 @@
         <name>Bot</name>
     </types>
 
-    <!-- Published planner bundle (topics + actions) -->
+    <!-- Published planner bundles (topics + actions), one per version -->
     <types>
         <members>Nimbus_Account_Assistant_v1</members>
+        <members>Nimbus_Account_Assistant_v2</members>
         <name>GenAiPlannerBundle</name>
     </types>
 
