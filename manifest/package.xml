@@ -6,6 +6,7 @@
     <types>
         <members>Nimbus_Account__c</members>
         <members>Nimbus_Invoice__c</members>
+        <members>Nimbus_Outage__c</members>
         <members>Nimbus_Plan__c</members>
         <name>CustomObject</name>
     </types>
@@ -17,10 +18,12 @@
         <name>ApexClass</name>
     </types>
 
-    <!-- Plan-change Flows (read-only preview + confirmation-gated commit) -->
+    <!-- Plan-change Flows (read-only preview + confirmation-gated commit)
+         and outage-status grounding Flow (read-only query by region) -->
     <types>
         <members>Nimbus_Preview_Plan_Change</members>
         <members>Nimbus_Commit_Plan_Change</members>
+        <members>Nimbus_Check_Outage</members>
         <name>Flow</name>
     </types>
 

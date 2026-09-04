@@ -1,0 +1,8 @@
+{
+  "records": [
+    { "attributes": { "type": "Nimbus_Outage__c", "referenceId": "outage_northeast" }, "Name": "Northeast Broadband Degradation", "Region__c": "Northeast", "Status__c": "Identified", "Summary__c": "Customers in the Northeast may experience slower broadband speeds and intermittent streaming buffering. Mobile voice and text are unaffected. Engineers have identified a faulty core router and are deploying a fix.", "Estimated_Resolution__c": "within 3 hours", "Is_Active__c": true },
+    { "attributes": { "type": "Nimbus_Outage__c", "referenceId": "outage_bayarea" }, "Name": "Bay Area Mobile Data Outage", "Region__c": "Bay Area", "Status__c": "Monitoring", "Summary__c": "A mobile data outage affecting the Bay Area has been mitigated. Most customers should see service restored; we are monitoring for stability. Voice, text, and broadband are unaffected.", "Estimated_Resolution__c": "restored, monitoring for 1 hour", "Is_Active__c": true },
+    { "attributes": { "type": "Nimbus_Outage__c", "referenceId": "outage_london" }, "Name": "London Streaming Investigation", "Region__c": "London", "Status__c": "Investigating", "Summary__c": "We are investigating reports of Nimbus streaming failures in the London region. Broadband and mobile services are operating normally. No confirmed cause yet.", "Estimated_Resolution__c": "under investigation", "Is_Active__c": true },
+    { "attributes": { "type": "Nimbus_Outage__c", "referenceId": "outage_midwest_resolved" }, "Name": "Midwest Fiber Cut (Resolved)", "Region__c": "Midwest", "Status__c": "Resolved", "Summary__c": "A fiber cut affecting broadband in the Midwest has been fully repaired and all services restored.", "Estimated_Resolution__c": "", "Is_Active__c": false }
+  ]
+}
