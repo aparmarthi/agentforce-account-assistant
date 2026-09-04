@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Current_Plan__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The customer's currently subscribed Nimbus plan.</description>
+    <label>Current Plan</label>
+    <referenceTo>Nimbus_Plan__c</referenceTo>
+    <relationshipLabel>Subscribers</relationshipLabel>
+    <relationshipName>Subscribers</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

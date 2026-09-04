@@ -1,0 +1,9 @@
+{
+  "records": [
+    { "attributes": { "type": "Nimbus_Plan__c", "referenceId": "plan_basic" }, "Name": "Basic", "Monthly_Price__c": 25.00, "Data_Allowance__c": "10 GB", "Is_Active__c": true },
+    { "attributes": { "type": "Nimbus_Plan__c", "referenceId": "plan_plus" }, "Name": "Plus", "Monthly_Price__c": 45.00, "Data_Allowance__c": "50 GB", "Is_Active__c": true },
+    { "attributes": { "type": "Nimbus_Plan__c", "referenceId": "plan_premium" }, "Name": "Premium", "Monthly_Price__c": 65.00, "Data_Allowance__c": "Unlimited", "Is_Active__c": true },
+    { "attributes": { "type": "Nimbus_Plan__c", "referenceId": "plan_business" }, "Name": "Business", "Monthly_Price__c": 95.00, "Data_Allowance__c": "Unlimited + priority support", "Is_Active__c": true },
+    { "attributes": { "type": "Nimbus_Plan__c", "referenceId": "plan_legacy" }, "Name": "Legacy Unlimited", "Monthly_Price__c": 55.00, "Data_Allowance__c": "Unlimited (retired)", "Is_Active__c": false }
+  ]
+}

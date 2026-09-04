@@ -6,6 +6,7 @@
     <types>
         <members>Nimbus_Account__c</members>
         <members>Nimbus_Invoice__c</members>
+        <members>Nimbus_Plan__c</members>
         <name>CustomObject</name>
     </types>
 
@@ -14,6 +15,13 @@
         <members>NimbusBillingAction</members>
         <members>NimbusBillingActionTest</members>
         <name>ApexClass</name>
+    </types>
+
+    <!-- Plan-change Flows (read-only preview + confirmation-gated commit) -->
+    <types>
+        <members>Nimbus_Preview_Plan_Change</members>
+        <members>Nimbus_Commit_Plan_Change</members>
+        <name>Flow</name>
     </types>
 
     <!-- Object/field/class access for the agent user -->
