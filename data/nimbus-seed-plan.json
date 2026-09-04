@@ -1,0 +1,14 @@
+[
+  {
+    "sobject": "Nimbus_Account__c",
+    "saveRefs": true,
+    "resolveRefs": false,
+    "files": ["Nimbus_Account__c.json"]
+  },
+  {
+    "sobject": "Nimbus_Invoice__c",
+    "saveRefs": false,
+    "resolveRefs": true,
+    "files": ["Nimbus_Invoice__c.json"]
+  }
+]

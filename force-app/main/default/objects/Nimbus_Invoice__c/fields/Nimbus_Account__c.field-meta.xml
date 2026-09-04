@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Nimbus_Account__c</fullName>
+    <deleteConstraint>Cascade</deleteConstraint>
+    <description>Owning customer account.</description>
+    <label>Nimbus Account</label>
+    <referenceTo>Nimbus_Account__c</referenceTo>
+    <relationshipLabel>Invoices</relationshipLabel>
+    <relationshipName>Invoices</relationshipName>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

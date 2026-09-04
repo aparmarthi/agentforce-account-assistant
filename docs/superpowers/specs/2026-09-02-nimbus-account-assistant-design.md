@@ -2,7 +2,7 @@
 
 **Date:** 2026-09-02
 **Author:** Amey Parmarthi
-**Purpose:** Interview artifact for a Salesforce FDE loop. A working, version-controlled Agentforce agent that can be *demoed live* and *whiteboarded as a solution design*. Deliberately domain-neutral so the capabilities generalize to any interviewer's industry.
+**Purpose:** A working, version-controlled Agentforce agent that can be *demoed live* and *explained as a solution design*. Deliberately domain-neutral so the capabilities generalize across industries.
 **Target org:** SDO (Simple Demo Org), alias `sdo` — preloaded with Agentforce Sales/Service, Data 360, Platform licenses.
 **Build path:** ADLC toolchain (CLI-deployed via `sf`), version-controlled in this repo.
 
@@ -21,14 +21,14 @@
 
 ---
 
-## 2. What This Demonstrates (interview thesis)
+## 2. What This Demonstrates
 
-An FDE loop tests whether you can **decompose a business problem into an agent architecture and prove it's safe and measurable** — not whether you can wire one action. This build shows:
+The goal is to **decompose a business problem into an agent architecture and prove it's safe and measurable** — not just wire one action. This build shows:
 
 1. **Topic decomposition** — 4 topics, each mapping to a distinct business capability.
-2. **Deliberate action-type selection** — each topic uses a *different* action type, so the candidate can narrate "I pick the tool to fit the job, not everything is a prompt."
+2. **Deliberate action-type selection** — each topic uses a *different* action type: pick the tool to fit the job, not everything is a prompt.
 3. **Guardrails** — scope enforcement, PII redaction, refusals, prompt-injection resistance (the regulated-industry differentiator).
-4. **Evals as first-class** — a scored eval set, not happy-path clicks. This is the primary differentiator vs. typical candidates.
+4. **Evals as first-class** — a scored eval set, not happy-path clicks.
 5. **Business framing** — containment → deflected cases → $ saved.
 
 ---
@@ -127,7 +127,7 @@ agentforce-account-assistant/
 
 **In scope:** exactly 4 topics, one action each, ~12 eval cases, ~10 seed customers.
 
-**Out of scope:** auth flows, multi-language, live payment integration, real Slack surface, multi-agent orchestration, production hardening. Enough to demo live and whiteboard — not a product.
+**Out of scope:** auth flows, multi-language, live payment integration, real Slack surface, multi-agent orchestration, production hardening. Enough to demo live and explain the design — not a product.
 
 ---
 

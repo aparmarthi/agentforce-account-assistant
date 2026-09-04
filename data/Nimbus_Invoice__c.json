@@ -1,0 +1,17 @@
+{
+  "records": [
+    { "attributes": { "type": "Nimbus_Invoice__c", "referenceId": "inv_1" }, "Nimbus_Account__c": "@acct_1", "Amount__c": 89.99, "Due_Date__c": "2026-09-15", "Status__c": "Open" },
+    { "attributes": { "type": "Nimbus_Invoice__c", "referenceId": "inv_2" }, "Nimbus_Account__c": "@acct_1", "Amount__c": 89.99, "Due_Date__c": "2026-08-15", "Status__c": "Paid" },
+    { "attributes": { "type": "Nimbus_Invoice__c", "referenceId": "inv_3" }, "Nimbus_Account__c": "@acct_2", "Amount__c": 45.00, "Due_Date__c": "2026-08-01", "Status__c": "Overdue" },
+    { "attributes": { "type": "Nimbus_Invoice__c", "referenceId": "inv_4" }, "Nimbus_Account__c": "@acct_2", "Amount__c": 45.00, "Due_Date__c": "2026-09-01", "Status__c": "Open" },
+    { "attributes": { "type": "Nimbus_Invoice__c", "referenceId": "inv_5" }, "Nimbus_Account__c": "@acct_3", "Amount__c": 249.50, "Due_Date__c": "2026-09-20", "Status__c": "Open" },
+    { "attributes": { "type": "Nimbus_Invoice__c", "referenceId": "inv_6" }, "Nimbus_Account__c": "@acct_4", "Amount__c": 60.00, "Due_Date__c": "2026-07-15", "Status__c": "Overdue" },
+    { "attributes": { "type": "Nimbus_Invoice__c", "referenceId": "inv_7" }, "Nimbus_Account__c": "@acct_4", "Amount__c": 60.00, "Due_Date__c": "2026-08-15", "Status__c": "Overdue" },
+    { "attributes": { "type": "Nimbus_Invoice__c", "referenceId": "inv_8" }, "Nimbus_Account__c": "@acct_5", "Amount__c": 129.00, "Due_Date__c": "2026-08-10", "Status__c": "Paid" },
+    { "attributes": { "type": "Nimbus_Invoice__c", "referenceId": "inv_9" }, "Nimbus_Account__c": "@acct_6", "Amount__c": 45.00, "Due_Date__c": "2026-09-05", "Status__c": "Open" },
+    { "attributes": { "type": "Nimbus_Invoice__c", "referenceId": "inv_10" }, "Nimbus_Account__c": "@acct_7", "Amount__c": 349.00, "Due_Date__c": "2026-09-25", "Status__c": "Open" },
+    { "attributes": { "type": "Nimbus_Invoice__c", "referenceId": "inv_11" }, "Nimbus_Account__c": "@acct_7", "Amount__c": 349.00, "Due_Date__c": "2026-07-25", "Status__c": "Overdue" },
+    { "attributes": { "type": "Nimbus_Invoice__c", "referenceId": "inv_12" }, "Nimbus_Account__c": "@acct_8", "Amount__c": 45.00, "Due_Date__c": "2026-08-20", "Status__c": "Paid" },
+    { "attributes": { "type": "Nimbus_Invoice__c", "referenceId": "inv_13" }, "Nimbus_Account__c": "@acct_9", "Amount__c": 99.00, "Due_Date__c": "2026-09-12", "Status__c": "Open" }
+  ]
+}

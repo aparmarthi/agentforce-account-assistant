@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <!-- Nimbus Account Assistant — full component manifest -->
+
+    <!-- Data model -->
+    <types>
+        <members>Nimbus_Account__c</members>
+        <members>Nimbus_Invoice__c</members>
+        <name>CustomObject</name>
+    </types>
+
+    <!-- Billing action (deterministic balance) + test -->
+    <types>
+        <members>NimbusBillingAction</members>
+        <members>NimbusBillingActionTest</members>
+        <name>ApexClass</name>
+    </types>
+
+    <!-- Object/field/class access for the agent user -->
+    <types>
+        <members>Nimbus_Assistant_Access</members>
+        <name>PermissionSet</name>
+    </types>
+
+    <!-- Agent Script source bundle -->
+    <types>
+        <members>Nimbus_Account_Assistant</members>
+        <name>AiAuthoringBundle</name>
+    </types>
+
+    <!-- Published runtime agent -->
+    <types>
+        <members>Nimbus_Account_Assistant</members>
+        <name>Bot</name>
+    </types>
+
+    <!-- Published planner bundle (topics + actions) -->
+    <types>
+        <members>Nimbus_Account_Assistant_v1</members>
+        <name>GenAiPlannerBundle</name>
+    </types>
+
+    <version>67.0</version>
+</Package>

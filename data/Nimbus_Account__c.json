@@ -1,0 +1,14 @@
+{
+  "records": [
+    { "attributes": { "type": "Nimbus_Account__c", "referenceId": "acct_1" }, "Customer_Name__c": "Ava Thompson", "Email__c": "ava.thompson@example.com", "Tier__c": "Premium" },
+    { "attributes": { "type": "Nimbus_Account__c", "referenceId": "acct_2" }, "Customer_Name__c": "Liam Chen", "Email__c": "liam.chen@example.com", "Tier__c": "Standard" },
+    { "attributes": { "type": "Nimbus_Account__c", "referenceId": "acct_3" }, "Customer_Name__c": "Sofia Martinez", "Email__c": "sofia.martinez@example.com", "Tier__c": "Business" },
+    { "attributes": { "type": "Nimbus_Account__c", "referenceId": "acct_4" }, "Customer_Name__c": "Noah Patel", "Email__c": "noah.patel@example.com", "Tier__c": "Standard" },
+    { "attributes": { "type": "Nimbus_Account__c", "referenceId": "acct_5" }, "Customer_Name__c": "Emma Wilson", "Email__c": "emma.wilson@example.com", "Tier__c": "Premium" },
+    { "attributes": { "type": "Nimbus_Account__c", "referenceId": "acct_6" }, "Customer_Name__c": "Oliver Nguyen", "Email__c": "oliver.nguyen@example.com", "Tier__c": "Standard" },
+    { "attributes": { "type": "Nimbus_Account__c", "referenceId": "acct_7" }, "Customer_Name__c": "Isabella Rossi", "Email__c": "isabella.rossi@example.com", "Tier__c": "Business" },
+    { "attributes": { "type": "Nimbus_Account__c", "referenceId": "acct_8" }, "Customer_Name__c": "James O'Brien", "Email__c": "james.obrien@example.com", "Tier__c": "Standard" },
+    { "attributes": { "type": "Nimbus_Account__c", "referenceId": "acct_9" }, "Customer_Name__c": "Mia Kowalski", "Email__c": "mia.kowalski@example.com", "Tier__c": "Premium" },
+    { "attributes": { "type": "Nimbus_Account__c", "referenceId": "acct_10" }, "Customer_Name__c": "Lucas Silva", "Email__c": "lucas.silva@example.com", "Tier__c": "Standard" }
+  ]
+}
