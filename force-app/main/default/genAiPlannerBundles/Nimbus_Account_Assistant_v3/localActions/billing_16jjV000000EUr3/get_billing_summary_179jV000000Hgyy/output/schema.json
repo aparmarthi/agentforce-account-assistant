@@ -1,0 +1,38 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "found" : {
+      "title" : "Found",
+      "description" : "Whether a matching account was found.",
+      "lightning:type" : "lightning__booleanType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true
+    },
+    "openInvoiceCount" : {
+      "title" : "Open Invoice Count",
+      "description" : "Number of unpaid invoices.",
+      "lightning:type" : "lightning__integerType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true
+    },
+    "outstandingBalance" : {
+      "title" : "Outstanding Balance",
+      "description" : "Total unpaid amount.",
+      "lightning:type" : "lightning__numberType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true
+    },
+    "summary" : {
+      "title" : "Summary",
+      "description" : "Human-readable billing summary to relay to the customer.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}
