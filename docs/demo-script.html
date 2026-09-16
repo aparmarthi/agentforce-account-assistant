@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nimbus Account Assistant — Demo Script &amp; Architecture</title>
+<style>
+  :root{
+    --ink:#0b2545;--muted:#5b6b82;--line:#dfe6ef;--bg:#f6f8fb;--card:#fff;
+    --brand:#1b6ef3;--brand-soft:#eaf2ff;--ok:#127a3d;--ok-soft:#e6f4ec;
+    --warn:#8a5a00;--warn-soft:#fdf3e0;--stop:#a11a1a;--stop-soft:#fbeaea;
+    --mono:"SF Mono",ui-monospace,"Cascadia Code",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.5;font-size:15px}
+  header{background:linear-gradient(135deg,#0b2545,#1b6ef3);color:#fff;padding:36px 40px}
+  header h1{margin:0 0 6px;font-size:26px}
+  header p{margin:0;opacity:.9;max-width:820px}
+  header .meta{margin-top:14px;font-size:13px;opacity:.85}
+  header .meta code{background:rgba(255,255,255,.15);padding:2px 6px;border-radius:4px;color:#fff}
+  main{max-width:960px;margin:0 auto;padding:28px 24px 80px}
+  section{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:24px 26px;margin:20px 0;box-shadow:0 1px 2px rgba(11,37,69,.04)}
+  h2{font-size:19px;margin:0 0 4px;display:flex;align-items:center;gap:10px}
+  h2 .n{background:var(--brand);color:#fff;width:26px;height:26px;border-radius:50%;
+    display:inline-flex;align-items:center;justify-content:center;font-size:14px;flex:0 0 auto}
+  h3{font-size:15px;margin:22px 0 8px;color:var(--ink)}
+  .sub{color:var(--muted);margin:0 0 14px;font-size:13.5px}
+  .pill{display:inline-block;font-size:11.5px;font-weight:600;padding:2px 9px;border-radius:20px;
+    letter-spacing:.02em;vertical-align:middle}
+  .pill.apex{background:var(--brand-soft);color:var(--brand)}
+  .pill.flow-r{background:var(--ok-soft);color:var(--ok)}
+  .pill.flow-w{background:var(--warn-soft);color:var(--warn)}
+  .pill.esc{background:var(--stop-soft);color:var(--stop)}
+  .turn{border-left:3px solid var(--line);padding:2px 0 2px 16px;margin:14px 0}
+  .turn.user{border-color:var(--brand)}
+  .turn .who{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+  .turn .say{font-family:var(--mono);font-size:13.5px;background:#f2f5f9;border-radius:8px;
+    padding:9px 12px;margin-top:4px;display:block}
+  .turn.user .say{background:var(--brand-soft)}
+  .expect{font-size:13px;color:var(--muted);margin-top:6px}
+  .expect b{color:var(--ink)}
+  .watch{background:#fbfcfe;border:1px dashed var(--line);border-radius:8px;padding:10px 14px;
+    margin-top:10px;font-size:12.5px;color:var(--muted)}
+  .watch b{color:var(--ink)}
+  table{width:100%;border-collapse:collapse;margin:8px 0;font-size:13px}
+  th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--muted);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em}
+  td code,.mono{font-family:var(--mono);font-size:12.5px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .kv{border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:#fbfcfe}
+  .kv h4{margin:0 0 8px;font-size:13px;color:var(--brand);text-transform:uppercase;letter-spacing:.04em}
+  .kv ul{margin:0;padding-left:18px}
+  .kv li{margin:3px 0;font-size:13px}
+  .flowbox{font-family:var(--mono);font-size:12px;background:#0b2545;color:#d7e3f5;border-radius:10px;
+    padding:16px 18px;overflow-x:auto;line-height:1.7}
+  .flowbox .u{color:#7fb2ff}.flowbox .a{color:#84e6a8}.flowbox .w{color:#f5c775}.flowbox .e{color:#ff9d9d}
+  .note{background:var(--brand-soft);border-radius:8px;padding:12px 16px;font-size:13px;margin-top:12px}
+  .note b{color:var(--brand)}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;margin-top:6px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .dot{width:10px;height:10px;border-radius:3px;display:inline-block}
+  .no-print{}
+  @media print{body{background:#fff;font-size:11.5px}section{box-shadow:none;break-inside:avoid}
+    header{background:#0b2545 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .flowbox,.pill,.kv,.watch{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+  @media(max-width:680px){.grid{grid-template-columns:1fr}}
+  footer{max-width:960px;margin:0 auto;padding:0 24px 60px;color:var(--muted);font-size:12px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Nimbus Account Assistant</h1>
+  <p>Router-first Agentforce service agent. Four capabilities, each wired to the right tool for the shape of the work — deterministic Apex for reads, confirmation-gated Flows for writes, a grounded structured query for outage status, and a generative-guidance path that ends in a Case write or human handoff.</p>
+  <div class="meta">Org: <code>sdo</code> &nbsp;·&nbsp; Agent type: <code>AgentforceServiceAgent</code> &nbsp;·&nbsp; Published: <code>v4</code> (active) &nbsp;·&nbsp; API version: <code>67.0</code></div>
+</header>
+
+<main>
+
+<!-- ============ DEMO SCRIPT ============ -->
+<section>
+  <h2><span class="n">▶</span> Live Demo Script</h2>
+  <p class="sub">Present in order. Each block: what you type, what the agent should do, and what to point at. Utterances use real seed data so every lookup resolves. Open <span class="mono">/agent preview</span> against the published agent (<span class="mono">--api-name Nimbus_Account_Assistant</span>).</p>
+
+  <div class="legend">
+    <span><i class="dot" style="background:#1b6ef3"></i> Apex (read)</span>
+    <span><i class="dot" style="background:#127a3d"></i> Flow (read-only)</span>
+    <span><i class="dot" style="background:#8a5a00"></i> Flow (write, gated)</span>
+    <span><i class="dot" style="background:#a11a1a"></i> Human escalation</span>
+  </div>
+
+  <!-- Topic 1 -->
+  <h3>1 · Billing summary <span class="pill apex">Apex · NimbusBillingAction</span></h3>
+  <div class="turn user"><span class="who">You</span><span class="say">What's my outstanding balance?</span></div>
+  <div class="turn"><span class="who">Agent</span><span class="say">Sure — can I have your full name to look up your account?</span></div>
+  <div class="turn user"><span class="who">You</span><span class="say">Ava Thompson</span></div>
+  <div class="turn"><span class="who">Agent</span><span class="say">Ava Thompson (Premium tier) has an outstanding balance of $89.99 across 1 unpaid invoice…</span></div>
+  <div class="expect"><b>Point out:</b> the number is computed in Apex (SOQL sum over unpaid invoices), not by the LLM — auditable and correct by construction. The agent relays the figure verbatim.</div>
+  <div class="watch"><b>Watch the trace:</b> a <span class="mono">FunctionStep</span> for <span class="mono">get_billing_summary</span> must fire. Alt name to try: <b>Liam Chen</b> → $90.00 across 2 invoices (one overdue).</div>
+
+  <!-- Topic 2 -->
+  <h3>2 · Plan change <span class="pill flow-r">Flow · Preview</span> <span class="pill flow-w">Flow · Commit (gated)</span></h3>
+  <div class="turn user"><span class="who">You</span><span class="say">I want to switch to the Premium plan. I'm Ava Thompson.</span></div>
+  <div class="turn"><span class="who">Agent</span><span class="say">The Premium plan is $65.00/month with Unlimited data. Would you like me to switch you to it?</span></div>
+  <div class="turn user"><span class="who">You</span><span class="say">Yes, go ahead.</span></div>
+  <div class="turn"><span class="who">Agent</span><span class="say">Done — your Premium plan is now active.</span></div>
+  <div class="expect"><b>Point out:</b> the write is <b>confirmation-gated</b>. Preview resolves &amp; validates (read-only) and sets two gate variables; the commit action is literally unavailable until those are non-empty. No plan changes without an explicit "yes".</div>
+  <div class="watch"><b>Negative test:</b> ask for the <b>"Legacy Unlimited"</b> plan → preview reports it's not available (inactive), agent lists active plans (Basic/Plus/Premium/Business) and does <b>not</b> commit.</div>
+
+  <!-- Topic 3 -->
+  <h3>3 · Service &amp; outage status <span class="pill flow-r">Flow · Check_Outage (grounded)</span></h3>
+  <div class="turn user"><span class="who">You</span><span class="say">Is there an outage in the Northeast?</span></div>
+  <div class="turn"><span class="who">Agent</span><span class="say">Yes — Northeast broadband degradation, status Identified. Engineers found a faulty core router; estimated resolution within 3 hours.</span></div>
+  <div class="expect"><b>Point out:</b> this is <b>grounded on structured records</b>, not RAG. Data is keyed by region, so a deterministic query is the correct tool — the agent reports only what the Flow returns, never invents status or timing.</div>
+  <div class="watch"><b>Regions to try:</b> Bay Area (Monitoring), London (Investigating), Midwest (Resolved/inactive → "no active outage"), Denver (no record → "no active outage, service normal").</div>
+
+  <!-- Topic 4 -->
+  <h3>4 · Troubleshoot → Case / escalate <span class="pill flow-w">Flow · Create_Case</span> <span class="pill esc">@utils.escalate</span></h3>
+  <div class="turn user"><span class="who">You</span><span class="say">My streaming keeps buffering.</span></div>
+  <div class="turn"><span class="who">Agent</span><span class="say">Let's try a few things: restart your router, check for a known outage in your area, and reinstall the Nimbus app… Did that help?</span></div>
+  <div class="turn user"><span class="who">You</span><span class="say">No, still bad. Can you log a case for me?</span></div>
+  <div class="turn"><span class="who">Agent</span><span class="say">I can do that — what's your full name?</span></div>
+  <div class="turn user"><span class="who">You</span><span class="say">Ava Thompson</span></div>
+  <div class="turn"><span class="who">Agent</span><span class="say">Done — I've logged case 00001069. A Nimbus agent will follow up.</span></div>
+  <div class="expect"><b>Point out:</b> generative guidance first (contained self-service is the preferred outcome), then a real Case write. Name is <b>required</b> before the case is created; asking to log a case does <b>not</b> trigger a human handoff.</div>
+  <div class="watch"><b>Escalation test:</b> "I want to talk to a real person" → <span class="mono">@utils.escalate</span> fires (human handoff), distinct from case-logging. <b>Proof from live runs:</b> Cases 00001068 &amp; 00001069 created end-to-end.</div>
+
+  <div class="note"><b>Router talking point:</b> one probabilistic router (<span class="mono">topic_selector</span>) routes on the <b>full conversation history</b> and is instructed to route only — never answer directly. The four capabilities are deterministic slices behind it. This split (probabilistic routing, deterministic execution) is the whole design thesis.</div>
+</section>
+
+<!-- ============ ARCHITECTURE GLANCE ============ -->
+<section>
+  <h2><span class="n">◧</span> Architecture at a Glance</h2>
+  <p class="sub">Every component below is verified from source in this repo — the agent script, Apex class, Flow metadata, and object definitions.</p>
+
+  <div class="flowbox">
+<span class="u">Customer</span> → <b>topic_selector</b> (router · routes on full history, route-only)
+   ├─ <span class="u">billing</span>        → <span class="a">apex://NimbusBillingAction</span>            <span class="a">(read · SOQL sum)</span>
+   ├─ <span class="u">plan_change</span>    → <span class="a">flow://Nimbus_Preview_Plan_Change</span>     <span class="a">(read-only)</span>
+   │                   → <span class="w">flow://Nimbus_Commit_Plan_Change</span>      <span class="w">(WRITE · gated by preview vars)</span>
+   ├─ <span class="u">outage_status</span>  → <span class="a">flow://Nimbus_Check_Outage</span>            <span class="a">(read · grounded by region)</span>
+   ├─ <span class="u">troubleshoot</span>   → generative guidance
+   │                   → <span class="w">flow://Nimbus_Create_Case</span>            <span class="w">(WRITE · Case, name required)</span>
+   │                   → <span class="e">@utils.escalate</span>                     <span class="e">(human handoff)</span>
+   └─ escalation · off_topic · ambiguous_question   (guardrail subagents)
+  </div>
+
+  <div class="grid" style="margin-top:18px">
+    <div class="kv">
+      <h4>Apex</h4>
+      <ul>
+        <li><b>NimbusBillingAction</b> — <span class="mono">@InvocableMethod</span>, <span class="mono">with sharing</span></li>
+        <li>Queries Nimbus_Account__c by name → sums unpaid Nimbus_Invoice__c</li>
+        <li>Deterministic balance lives in code, not the LLM</li>
+        <li>+ NimbusBillingActionTest</li>
+      </ul>
+    </div>
+    <div class="kv">
+      <h4>Flows <span style="font-weight:400;color:var(--muted)">(all AutoLaunched)</span></h4>
+      <ul>
+        <li><b>Nimbus_Preview_Plan_Change</b> — read-only resolve/validate</li>
+        <li><b>Nimbus_Commit_Plan_Change</b> — write, sets Current_Plan__c</li>
+        <li><b>Nimbus_Check_Outage</b> — read, query by region</li>
+        <li><b>Nimbus_Create_Case</b> — write, inserts Case, returns number</li>
+      </ul>
+    </div>
+    <div class="kv">
+      <h4>Data model <span style="font-weight:400;color:var(--muted)">(custom objects)</span></h4>
+      <ul>
+        <li><b>Nimbus_Account__c</b> — Customer_Name, Email, Tier, Current_Plan (→Plan)</li>
+        <li><b>Nimbus_Invoice__c</b> — Amount, Due_Date, Status, →Account</li>
+        <li><b>Nimbus_Plan__c</b> — Monthly_Price, Data_Allowance, Is_Active</li>
+        <li><b>Nimbus_Outage__c</b> — Region, Status, Summary, Est_Resolution, Is_Active</li>
+        <li><b>Case</b> (standard) — troubleshoot handoff target</li>
+      </ul>
+    </div>
+    <div class="kv">
+      <h4>Access &amp; lifecycle</h4>
+      <ul>
+        <li><b>Nimbus_Assistant_Access</b> permset — classAccess, objectPerms, flowAccesses</li>
+        <li>Einstein Agent User runs the agent (service-agent context)</li>
+        <li>Source-controlled bundle; published v1→v4, each version captured</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>What is <em>not</em> used — and why</h3>
+  <table>
+    <tr><th>Capability</th><th>Status</th><th>Rationale</th></tr>
+    <tr><td><b>Data Cloud</b></td><td>Not used</td><td>Not provisioned in <span class="mono">sdo</span> (DataKnowledgeSpace = 0). No capability here needs it.</td></tr>
+    <tr><td><b>Data Library / ADL</b></td><td>Not used</td><td>No document corpus. Nothing to index.</td></tr>
+    <tr><td><b>RAG / vector retrieval</b></td><td>Not used</td><td><b>Deliberate.</b> All grounded data (outages, plans, invoices) is <b>structured</b> and keyed — a deterministic query is the correct, auditable tool. Reaching for RAG over structured data would be a red flag.</td></tr>
+    <tr><td><b>Prompt Template action</b></td><td>Not used</td><td>Generative troubleshooting guidance comes from the subagent's own reasoning; no separate template needed for the demo scope.</td></tr>
+  </table>
+  <div class="note"><b>Roadmap note (worth saying aloud):</b> RAG earns its place only when troubleshooting guidance moves from model-general knowledge to a real Nimbus knowledge base of unstructured articles. That's the one place a Data Library + retrieval would be the right tool — and it's scoped as future work, not shoehorned in now.</div>
+</section>
+
+<section>
+  <h2><span class="n">✦</span> The One-Liner</h2>
+  <p style="font-size:15.5px;margin:6px 0 0">
+    "A router-first Agentforce agent where a single probabilistic router hands off to four deterministic slices — each matched to the shape of its work: <b>Apex</b> for computed reads, <b>confirmation-gated Flows</b> for writes, a <b>structured query</b> for region-keyed outage status, and a <b>generative-guidance</b> path that ends in a real Case or a human. Grounding is structured-query, not RAG, on purpose."
+  </p>
+</section>
+
+</main>
+<footer>
+  Generated from repo source (agent script · Apex · Flow metadata · object definitions · seed data). Synthetic data only — no real PII. Print to PDF for a leave-behind.
+</footer>
+</body>
+</html>
