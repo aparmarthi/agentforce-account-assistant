@@ -52,6 +52,7 @@
         <members>Nimbus_Account_Assistant_v1</members>
         <members>Nimbus_Account_Assistant_v2</members>
         <members>Nimbus_Account_Assistant_v3</members>
+        <members>Nimbus_Account_Assistant_v4</members>
         <name>GenAiPlannerBundle</name>
     </types>
 
