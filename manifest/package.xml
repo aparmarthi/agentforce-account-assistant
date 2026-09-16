@@ -18,12 +18,14 @@
         <name>ApexClass</name>
     </types>
 
-    <!-- Plan-change Flows (read-only preview + confirmation-gated commit)
-         and outage-status grounding Flow (read-only query by region) -->
+    <!-- Plan-change Flows (read-only preview + confirmation-gated commit),
+         outage-status grounding Flow (read-only query by region), and
+         troubleshoot case-creation Flow (Case write + handoff) -->
     <types>
         <members>Nimbus_Preview_Plan_Change</members>
         <members>Nimbus_Commit_Plan_Change</members>
         <members>Nimbus_Check_Outage</members>
+        <members>Nimbus_Create_Case</members>
         <name>Flow</name>
     </types>
 
